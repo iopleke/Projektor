@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import projektor.proxy.CommonProxy;
 import projektor.reference.MetaData;
 import projektor.reference.Reference;
+import projektor.registry.Register;
 import projektor.utils.LogHelper;
 
 @Mod(modid = Reference.ID, name = Reference.NAME, version = Reference.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
@@ -33,6 +34,12 @@ public class Projektor
 
         LogHelper.info("Setting up metaData...");
         metadata = MetaData.init(metadata);
+        
+        LogHelper.info("Registering Blocks...");
+        Register.blocks();
+        
+        LogHelper.info("Registering Renderers...");
+        PROXY.initRenderers();
     }
 
     @Mod.EventHandler
@@ -44,6 +51,6 @@ public class Projektor
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-
+    	
     }
 }

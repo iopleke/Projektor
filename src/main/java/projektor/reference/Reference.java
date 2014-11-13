@@ -11,4 +11,7 @@ public class Reference
     public static final String V_REVIS = "@REVIS@";
     public static final String V_BUILD = "@BUILD@";
     public static final String VERSION_FULL = V_MAJOR + "." + V_MINOR + "." + V_REVIS + "." + V_BUILD;
+    
+    // BASE IDs
+    public static final String GHOST_BLOCK_UNLOCALIZED = "ghostblock";
 }
