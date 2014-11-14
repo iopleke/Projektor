@@ -1,12 +1,12 @@
 package projektor;
 
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.MinecraftForge;
 import projektor.proxy.CommonProxy;
 import projektor.reference.MetaData;
 import projektor.reference.Reference;
@@ -16,41 +16,42 @@ import projektor.utils.LogHelper;
 @Mod(modid = Reference.ID, name = Reference.NAME, version = Reference.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
 public class Projektor
 {
-    // Instancing
-    @Mod.Instance(value = Reference.ID)
-    public static Projektor INSTANCE;
 
-    // Public extra data about our mod that Forge uses in the mods listing page for more information.
-    @Mod.Metadata(Reference.ID)
-    public static ModMetadata metadata;
+	// Instancing
+	@Mod.Instance(value = Reference.ID)
+	public static Projektor INSTANCE;
 
-    @SidedProxy(clientSide = "projektor.proxy.ClientProxy", serverSide = "projektor.proxy.CommonProxy")
-    public static CommonProxy PROXY;
+	// Public extra data about our mod that Forge uses in the mods listing page for more information.
+	@Mod.Metadata(Reference.ID)
+	public static ModMetadata metadata;
 
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
-        INSTANCE = this;
+	@SidedProxy(clientSide = "projektor.proxy.ClientProxy", serverSide = "projektor.proxy.CommonProxy")
+	public static CommonProxy PROXY;
 
-        LogHelper.info("Setting up metaData...");
-        metadata = MetaData.init(metadata);
-        
-        LogHelper.info("Registering Blocks...");
-        Register.blocks();
-        
-        LogHelper.info("Registering Renderers...");
-        PROXY.initRenderers();
-    }
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event)
+	{
+		INSTANCE = this;
 
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+		LogHelper.info("Setting up metaData...");
+		metadata = MetaData.init(metadata);
 
-    }
+		LogHelper.info("Registering Blocks...");
+		Register.blocks();
 
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
-    	
-    }
+		LogHelper.info("Registering Renderers...");
+		PROXY.initRenderers();
+	}
+
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event)
+	{
+		MinecraftForge.EVENT_BUS.register(EventsHandler.INSTANCE);
+	}
+
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event)
+	{
+
+	}
 }
