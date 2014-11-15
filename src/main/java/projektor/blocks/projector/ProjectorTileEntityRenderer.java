@@ -1,17 +1,25 @@
 package projektor.blocks.projector;
 
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import projektor.reference.Resource;
 
 public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 {
 	ProjectorModel model;
+	private RenderBlocks renderBlocks;
+	private World world;
 
 	public ProjectorTileEntityRenderer()
 	{
 		this.model = new ProjectorModel();
+		this.world = null;
+		this.renderBlocks = new RenderBlocks();
 	}
 
 	@Override
@@ -19,6 +27,7 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 	{
 		if (tileEntity instanceof ProjectorTileEntity)
 		{
+
 			ProjectorTileEntity blueprintProjector = (ProjectorTileEntity) tileEntity;
 			int facing = blueprintProjector.getFacing();
 			GL11.glPushMatrix();
@@ -34,6 +43,11 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 			}
 			model.render(0.0625F);
 			GL11.glPopMatrix();
+
+			this.world = tileEntity.getWorldObj();
+			this.renderBlocks = new RenderBlocks((IBlockAccess) world);
+			//System.out.println("Rendering stone block at: x" + tileEntity.xCoord + ", y" + tileEntity.yCoord + 1 + ", z" + tileEntity.zCoord);
+			renderBlocks.renderBlockByRenderType(Blocks.stone, tileEntity.xCoord, (int) tileEntity.yCoord + 1, (int) tileEntity.zCoord);
 		}
 	}
 
