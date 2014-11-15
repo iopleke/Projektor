@@ -44,7 +44,7 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 			this.world = tileEntity.getWorldObj();
 			this.renderBlocks = new RenderBlocks((IBlockAccess) world);
 			System.out.println("Rendering block at: x" + tileEntity.xCoord + ", y" + tileEntity.yCoord + ", z" + tileEntity.zCoord);
-			renderBlocks.renderBlockAllFaces(Blocks.stone, tileEntity.xCoord, (int) tileEntity.yCoord, (int) tileEntity.zCoord);
+			renderBlocks.renderBlockByRenderType(Blocks.stone, tileEntity.xCoord, (int) tileEntity.yCoord, (int) tileEntity.zCoord);
 		}
 	}
 
