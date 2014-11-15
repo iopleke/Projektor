@@ -6,8 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
-import projektor.reference.Resource;
 
 public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 {
@@ -28,26 +26,25 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 		if (tileEntity instanceof ProjectorTileEntity)
 		{
 
-			ProjectorTileEntity blueprintProjector = (ProjectorTileEntity) tileEntity;
-			int facing = blueprintProjector.getFacing();
-			GL11.glPushMatrix();
-			GL11.glTranslated(x + 0.5D, y + 1.5D, z + 0.5D);
-			GL11.glRotatef(180f, 0f, 0f, 1f);
-			GL11.glRotatef((facing * 90.0F), 0.0F, 1.0F, 0.0F);
-			if (blueprintProjector.hasBlueprint())
-			{
-				bindTexture(Resource.Model.PROJECTOR_ON);
-			} else
-			{
-				bindTexture(Resource.Model.PROJECTOR_OFF);
-			}
-			model.render(0.0625F);
-			GL11.glPopMatrix();
-
+//			ProjectorTileEntity blueprintProjector = (ProjectorTileEntity) tileEntity;
+//			int facing = blueprintProjector.getFacing();
+//			GL11.glPushMatrix();
+//			GL11.glTranslated(x + 0.5D, y + 1.5D, z + 0.5D);
+//			GL11.glRotatef(180f, 0f, 0f, 1f);
+//			GL11.glRotatef((facing * 90.0F), 0.0F, 1.0F, 0.0F);
+//			if (blueprintProjector.hasBlueprint())
+//			{
+//				bindTexture(Resource.Model.PROJECTOR_ON);
+//			} else
+//			{
+//				bindTexture(Resource.Model.PROJECTOR_OFF);
+//			}
+//			model.render(0.0625F);
+//			GL11.glPopMatrix();
 			this.world = tileEntity.getWorldObj();
 			this.renderBlocks = new RenderBlocks((IBlockAccess) world);
-			//System.out.println("Rendering stone block at: x" + tileEntity.xCoord + ", y" + tileEntity.yCoord + 1 + ", z" + tileEntity.zCoord);
-			renderBlocks.renderBlockByRenderType(Blocks.stone, tileEntity.xCoord, (int) tileEntity.yCoord + 1, (int) tileEntity.zCoord);
+			System.out.println("Rendering block at: x" + tileEntity.xCoord + ", y" + tileEntity.yCoord + ", z" + tileEntity.zCoord);
+			renderBlocks.renderBlockAllFaces(Blocks.stone, tileEntity.xCoord, (int) tileEntity.yCoord, (int) tileEntity.zCoord);
 		}
 	}
 
