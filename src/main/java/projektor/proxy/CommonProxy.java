@@ -2,7 +2,10 @@ package projektor.proxy;
 
 public class CommonProxy
 {
-	public void initRenderers() {
-		
+	public static int RENDER_ID;
+
+	public void initRenderers()
+	{
+
 	}
 }

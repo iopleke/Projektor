@@ -6,24 +6,29 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import projektor.proxy.CommonProxy;
 import projektor.reference.MetaData;
-import projektor.reference.Reference;
+import projektor.reference.Naming;
+import projektor.registry.CreativeTabProjektor;
 import projektor.registry.Register;
 import projektor.utils.LogHelper;
 
-@Mod(modid = Reference.ID, name = Reference.NAME, version = Reference.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
+@Mod(modid = Naming.ID, name = Naming.NAME, version = Naming.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
 public class Projektor
 {
 
 	// Instancing
-	@Mod.Instance(value = Reference.ID)
+	@Mod.Instance(value = Naming.ID)
 	public static Projektor INSTANCE;
 
 	// Public extra data about our mod that Forge uses in the mods listing page for more information.
-	@Mod.Metadata(Reference.ID)
+	@Mod.Metadata(Naming.ID)
 	public static ModMetadata metadata;
+
+	// Creative tab instantiation
+	public static CreativeTabs TAB = new CreativeTabProjektor(Naming.NAME);
 
 	@SidedProxy(clientSide = "projektor.proxy.ClientProxy", serverSide = "projektor.proxy.CommonProxy")
 	public static CommonProxy PROXY;
