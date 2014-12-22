@@ -1,5 +1,4 @@
-Projektor
-=========
+![](https://raw.githubusercontent.com/jakimfett/Projektor/master/src/main/resources/assets/projektor/logo.png)
 
 Blueprint based projector, originally part of Minechem
 
