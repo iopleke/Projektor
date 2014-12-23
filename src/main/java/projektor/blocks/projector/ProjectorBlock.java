@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import projektor.Projektor;
+import projektor.proxy.CommonProxy;
 import projektor.reference.Naming;
 import projektor.reference.Texture;
 
@@ -55,7 +56,7 @@ public class ProjectorBlock extends BlockContainer
     @Override
     public int getRenderType()
     {
-        return -1;
+        return CommonProxy.RENDER_ID;
     }
 
     @Override

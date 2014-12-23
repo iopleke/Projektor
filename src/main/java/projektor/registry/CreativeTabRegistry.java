@@ -21,6 +21,6 @@ public class CreativeTabRegistry extends CreativeTabs
     @Override
     public ItemStack getIconItemStack()
     {
-        return new ItemStack(BlockRegistry.projectorBlock);
+        return new ItemStack(BlockRegistry.projector);
     }
 }

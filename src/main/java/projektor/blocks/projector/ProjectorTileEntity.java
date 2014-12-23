@@ -7,10 +7,20 @@ public class ProjectorTileEntity extends TileEntity
 
     public int getFacing()
     {
-        return worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+        if (this.getHasWorldObj())
+        {
+            return worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+
+        }
+        return 0;
     }
 
-    public boolean hasBlueprint()
+    public boolean getHasWorldObj()
+    {
+        return worldObj != null;
+    }
+
+    public boolean getHasBlueprint()
     {
         return false;
     }

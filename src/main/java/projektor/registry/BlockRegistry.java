@@ -11,10 +11,11 @@ import projektor.reference.Naming;
  */
 public class BlockRegistry
 {
-    public static Block projectorBlock;
+    public static Block projector;
 
     public static void init()
     {
-        GameRegistry.registerBlock(projectorBlock = new ProjectorBlock(), Naming.PROJECTOR);
+        projector = new ProjectorBlock();
+        GameRegistry.registerBlock(projector, Naming.PROJECTOR);
     }
 }

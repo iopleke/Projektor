@@ -38,6 +38,6 @@ public class ProjectorItemRenderer implements IItemRenderer
         {
             GL11.glTranslatef(-0.5F, 0.0F, -0.5F);
         }
-        this.tesr.renderTileEntityAt(this.te, 0.0D, 0.0D, 0.0D, 0.0F);
+        this.tesr.renderTileEntityAt(this.te, 0.0D, 0.0D, 0.0D, 0.0625F);
     }
 }
