@@ -5,13 +5,13 @@ import net.minecraft.tileentity.TileEntity;
 public class ProjectorTileEntity extends TileEntity
 {
 
-	public int getFacing()
-	{
-		return worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-	}
+    public int getFacing()
+    {
+        return worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+    }
 
-	public boolean hasBlueprint()
-	{
-		return false;
-	}
+    public boolean hasBlueprint()
+    {
+        return false;
+    }
 }

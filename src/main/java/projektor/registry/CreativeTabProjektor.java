@@ -8,20 +8,20 @@ import net.minecraft.item.ItemStack;
 public class CreativeTabProjektor extends CreativeTabs
 {
 
-	public CreativeTabProjektor(String tabName)
-	{
-		super(tabName);
-	}
+    public CreativeTabProjektor(String tabName)
+    {
+        super(tabName);
+    }
 
-	@Override
-	public Item getTabIconItem()
-	{
-		return null;
-	}
+    @Override
+    public Item getTabIconItem()
+    {
+        return null;
+    }
 
-	@Override
-	public ItemStack getIconItemStack()
-	{
-		return new ItemStack(Items.painting);
-	}
+    @Override
+    public ItemStack getIconItemStack()
+    {
+        return new ItemStack(Items.painting);
+    }
 }

@@ -17,57 +17,63 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class WorldProxy implements IBlockAccess
 {
 
-	IBlockAccess world;
-	Block block;
-	int meta;
-	int brightness;
-	int x, y, z;
+    IBlockAccess world;
+    Block block;
+    int meta;
+    int brightness;
+    int x, y, z;
 
-	public WorldProxy(IBlockAccess world, Block block, int meta, int x, int y, int z, int brightness) 
-	{
-		this.world = world;
-		this.block = block;
-		this.meta = meta;
-		this.brightness = brightness;
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
+    public WorldProxy(IBlockAccess world, Block block, int meta, int x, int y, int z, int brightness)
+    {
+        this.world = world;
+        this.block = block;
+        this.meta = meta;
+        this.brightness = brightness;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
     @Override
     public Block getBlock(int x, int y, int z)
     {
-    	if (x == this.x && y == this.y && z == this.z)
-			return block;
-		return Blocks.air;
+        if (x == this.x && y == this.y && z == this.z)
+        {
+            return block;
+        }
+        return Blocks.air;
     }
 
     @Override
     public TileEntity getTileEntity(int x, int y, int z)
     {
-    	return null;
+        return null;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public int getLightBrightnessForSkyBlocks(int var1, int var2, int var3, int var4)
     {
-    	return (brightness >= 0 && brightness < 16) ? brightness << 20 : 15 << 20;
+        return (brightness >= 0 && brightness < 16) ? brightness << 20 : 15 << 20;
     }
 
     @Override
     public int getBlockMetadata(int x, int y, int z)
     {
-    	if (x == this.x && y == this.y && z == this.z)
-        	return meta;
+        if (x == this.x && y == this.y && z == this.z)
+        {
+            return meta;
+        }
         return 0;
     }
 
     @Override
     public boolean isAirBlock(int x, int y, int z)
     {
-    	if (x == this.x && y == this.y && z == this.z)
-        	return false;
+        if (x == this.x && y == this.y && z == this.z)
+        {
+            return false;
+        }
         return true;
     }
 
@@ -101,7 +107,7 @@ public class WorldProxy implements IBlockAccess
     @Override
     public boolean isSideSolid(int x, int y, int z, ForgeDirection side, boolean _default)
     {
-    	return true;
+        return true;
     }
 
 }

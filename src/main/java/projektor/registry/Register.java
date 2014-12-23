@@ -14,19 +14,19 @@ import projektor.reference.Naming;
 public class Register
 {
 
-	public static Block ghostBlock;
-	public static Block projectorBlock;
+    public static Block ghostBlock;
+    public static Block projectorBlock;
 
-	public static void blocks()
-	{
-		GameRegistry.registerBlock(ghostBlock = new GhostBlock(), Naming.GHOSTBLOCK);
-		GameRegistry.registerBlock(projectorBlock = new ProjectorBlock(), Naming.PROJECTOR);
-	}
+    public static void blocks()
+    {
+        GameRegistry.registerBlock(ghostBlock = new GhostBlock(), Naming.GHOSTBLOCK);
+        GameRegistry.registerBlock(projectorBlock = new ProjectorBlock(), Naming.PROJECTOR);
+    }
 
-	public static void renderers()
-	{
-		CommonProxy.RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
-		ClientRegistry.bindTileEntitySpecialRenderer(ProjectorTileEntity.class, new ProjectorTileEntityRenderer());
-	}
+    public static void renderers()
+    {
+        CommonProxy.RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
+        ClientRegistry.bindTileEntitySpecialRenderer(ProjectorTileEntity.class, new ProjectorTileEntityRenderer());
+    }
 
 }

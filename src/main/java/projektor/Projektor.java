@@ -19,44 +19,44 @@ import projektor.utils.LogHelper;
 public class Projektor
 {
 
-	// Instancing
-	@Mod.Instance(value = Naming.ID)
-	public static Projektor INSTANCE;
+    // Instancing
+    @Mod.Instance(value = Naming.ID)
+    public static Projektor INSTANCE;
 
-	// Public extra data about our mod that Forge uses in the mods listing page for more information.
-	@Mod.Metadata(Naming.ID)
-	public static ModMetadata metadata;
+    // Public extra data about our mod that Forge uses in the mods listing page for more information.
+    @Mod.Metadata(Naming.ID)
+    public static ModMetadata metadata;
 
-	// Creative tab instantiation
-	public static CreativeTabs TAB = new CreativeTabProjektor(Naming.NAME);
+    // Creative tab instantiation
+    public static CreativeTabs TAB = new CreativeTabProjektor(Naming.NAME);
 
-	@SidedProxy(clientSide = "projektor.proxy.ClientProxy", serverSide = "projektor.proxy.CommonProxy")
-	public static CommonProxy PROXY;
+    @SidedProxy(clientSide = "projektor.proxy.ClientProxy", serverSide = "projektor.proxy.CommonProxy")
+    public static CommonProxy PROXY;
 
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		INSTANCE = this;
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        INSTANCE = this;
 
-		LogHelper.info("Setting up metaData...");
-		metadata = MetaData.init(metadata);
+        LogHelper.info("Setting up metaData...");
+        metadata = MetaData.init(metadata);
 
-		LogHelper.info("Registering Blocks...");
-		Register.blocks();
+        LogHelper.info("Registering Blocks...");
+        Register.blocks();
 
-		LogHelper.info("Registering Renderers...");
-		PROXY.initRenderers();
-	}
+        LogHelper.info("Registering Renderers...");
+        PROXY.initRenderers();
+    }
 
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent event)
-	{
-		MinecraftForge.EVENT_BUS.register(EventsHandler.INSTANCE);
-	}
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        MinecraftForge.EVENT_BUS.register(EventsHandler.INSTANCE);
+    }
 
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event)
-	{
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
 
-	}
+    }
 }

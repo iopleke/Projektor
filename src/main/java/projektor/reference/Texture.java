@@ -11,18 +11,18 @@ package projektor.reference;
  */
 public class Texture
 {
-	public static final class IIcon
-	{
-		private static final String PREFIX = Naming.ID + ":";
-		public static final String PROJECTOR = PREFIX + "blockProjector";
-	}
+    public static final class IIcon
+    {
+        private static final String PREFIX = Naming.ID + ":";
+        public static final String PROJECTOR = PREFIX + "blockProjector";
+    }
 
-	public static final class Model
-	{
+    public static final class Model
+    {
 
-		private static final String MODEL_DIR = "textures/model/";
-		public static final String PROJECTOR_ON = MODEL_DIR + "ProjectorModelOn.png";
-		public static final String PROJECTOR_OFF = MODEL_DIR + "ProjectorModelOff.png";
-	}
+        private static final String MODEL_DIR = "textures/model/";
+        public static final String PROJECTOR_ON = MODEL_DIR + "ProjectorModelOn.png";
+        public static final String PROJECTOR_OFF = MODEL_DIR + "ProjectorModelOff.png";
+    }
 
 }
