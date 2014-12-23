@@ -13,6 +13,5 @@ public class Naming
     public static final String VERSION_FULL = V_MAJOR + "." + V_MINOR + "." + V_REVIS + "." + V_BUILD;
 
     // BASE IDs
-    public static final String GHOSTBLOCK = "ghostblock";
     public static final String PROJECTOR = "projector";
 }

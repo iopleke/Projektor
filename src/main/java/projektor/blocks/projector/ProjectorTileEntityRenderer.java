@@ -82,7 +82,7 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
              */
             tessellator.setTranslation((int) -x, (int) -y, (int) -z);
             /* Render it onto the tessellator */
-            renderBlocks.renderBlockByRenderType(block, (int) x, (int) y, (int) z);
+            renderBlocks.renderBlockByRenderType(block, (int) x, (int) y + 1, (int) z);
             /* Render from the tessellator to the screen */
             tessellator.draw();
             /* Reset the tessellator translation */
