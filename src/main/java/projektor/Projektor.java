@@ -10,8 +10,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import projektor.proxy.CommonProxy;
 import projektor.reference.MetaData;
 import projektor.reference.Naming;
-import projektor.registry.CreativeTabProjektor;
-import projektor.registry.Register;
+import projektor.registry.BlockRegistry;
+import projektor.registry.CreativeTabRegistry;
 import projektor.utils.LogHelper;
 
 @Mod(modid = Naming.ID, name = Naming.NAME, version = Naming.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
@@ -27,7 +27,7 @@ public class Projektor
     public static ModMetadata metadata;
 
     // Creative tab instantiation
-    public static CreativeTabs TAB = new CreativeTabProjektor(Naming.NAME);
+    public static CreativeTabs TAB = new CreativeTabRegistry(Naming.NAME);
 
     @SidedProxy(clientSide = "projektor.proxy.ClientProxy", serverSide = "projektor.proxy.CommonProxy")
     public static CommonProxy PROXY;
@@ -48,7 +48,7 @@ public class Projektor
     public void init(FMLInitializationEvent event)
     {
         LogHelper.info("Registering Blocks...");
-        Register.blocks();
+        BlockRegistry.init();
     }
 
     @Mod.EventHandler

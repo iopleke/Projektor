@@ -5,10 +5,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class CreativeTabProjektor extends CreativeTabs
+public class CreativeTabRegistry extends CreativeTabs
 {
 
-    public CreativeTabProjektor(String tabName)
+    public CreativeTabRegistry(String tabName)
     {
         super(tabName);
     }
