@@ -1,9 +1,16 @@
 package projektor.blocks.projector;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public class ProjectorTileEntity extends TileEntity
 {
+    private ItemStack blueprint;
+
+    public ProjectorTileEntity()
+    {
+        blueprint = null;
+    }
 
     public int getFacing()
     {
@@ -22,6 +29,7 @@ public class ProjectorTileEntity extends TileEntity
 
     public boolean getHasBlueprint()
     {
-        return false;
+        return blueprint != null;
     }
+
 }
