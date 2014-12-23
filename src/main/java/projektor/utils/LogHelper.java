@@ -43,7 +43,7 @@ public class LogHelper
     }
 
     /**
-     * Logging on waring level
+     * Logging on warning level
      *
      * @param obj object to log
      */
