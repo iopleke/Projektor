@@ -1,7 +1,6 @@
 package projektor.registry;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -22,6 +21,6 @@ public class CreativeTabRegistry extends CreativeTabs
     @Override
     public ItemStack getIconItemStack()
     {
-        return new ItemStack(Items.painting);
+        return new ItemStack(BlockRegistry.projectorBlock);
     }
 }

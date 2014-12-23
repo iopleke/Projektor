@@ -11,7 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import projektor.Projektor;
-import projektor.proxy.CommonProxy;
 import projektor.reference.Naming;
 import projektor.reference.Texture;
 
@@ -35,12 +34,6 @@ public class ProjectorBlock extends BlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
-    {
-        return new ProjectorTileEntity();
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ir)
     {
@@ -48,15 +41,21 @@ public class ProjectorBlock extends BlockContainer
     }
 
     @Override
-    public int getRenderType()
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
-        return CommonProxy.RENDER_ID;
+        return new ProjectorTileEntity();
     }
 
     @Override
     public boolean renderAsNormalBlock()
     {
         return false;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return -1;
     }
 
     @Override
