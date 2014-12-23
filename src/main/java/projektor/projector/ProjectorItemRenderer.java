@@ -1,4 +1,4 @@
-package projektor.blocks.projector;
+package projektor.projector;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;

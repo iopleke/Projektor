@@ -4,9 +4,9 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
-import projektor.blocks.projector.ProjectorItemRenderer;
-import projektor.blocks.projector.ProjectorTileEntity;
-import projektor.blocks.projector.ProjectorTileEntityRenderer;
+import projektor.projector.ProjectorItemRenderer;
+import projektor.projector.ProjectorTileEntity;
+import projektor.projector.ProjectorTileEntityRenderer;
 import projektor.registry.BlockRegistry;
 
 public class ClientProxy extends CommonProxy

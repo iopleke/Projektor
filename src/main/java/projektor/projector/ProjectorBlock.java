@@ -1,4 +1,4 @@
-package projektor.blocks.projector;
+package projektor.projector;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
