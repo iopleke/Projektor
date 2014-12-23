@@ -38,7 +38,7 @@ public class ProjectorBlock extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ir)
     {
-        blockIcon = ir.registerIcon(Texture.IIcon.PROJECTOR);
+        blockIcon = ir.registerIcon(Texture.IIcon.DUMMY);
     }
 
     @Override
