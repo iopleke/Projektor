@@ -1,4 +1,4 @@
-package projektor.utils;
+package projektor.helper;
 
 import cpw.mods.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;

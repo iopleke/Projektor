@@ -12,7 +12,7 @@ import projektor.reference.MetaData;
 import projektor.reference.Naming;
 import projektor.registry.BlockRegistry;
 import projektor.registry.CreativeTabRegistry;
-import projektor.utils.LogHelper;
+import projektor.helper.LogHelper;
 
 @Mod(modid = Naming.ID, name = Naming.NAME, version = Naming.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
 public class Projektor
