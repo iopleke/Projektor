@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projektor.proxy;
 
 import cpw.mods.fml.relauncher.Side;
@@ -19,8 +14,8 @@ import net.minecraft.world.IBlockAccess;
  */
 public class BlockContainerProxy extends Block
 {
-    private Block myBlock;
-    private int mySide;
+    private final Block myBlock;
+    private final int mySide;
 
     /**
      * Default constructor
