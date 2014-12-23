@@ -9,25 +9,23 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.creativetab.CreativeTabs;
 import projektor.helper.LogHelper;
 import projektor.proxy.CommonProxy;
-import projektor.reference.MetaData;
-import projektor.reference.Naming;
 import projektor.registry.BlockRegistry;
 import projektor.registry.CreativeTabRegistry;
 
-@Mod(modid = Naming.ID, name = Naming.NAME, version = Naming.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
+@Mod(modid = Reference.Naming.ID, name = Reference.Naming.NAME, version = Reference.Versioning.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
 public class Projektor
 {
 
     // Instancing
-    @Mod.Instance(value = Naming.ID)
+    @Mod.Instance(value = Reference.Naming.ID)
     public static Projektor INSTANCE;
 
     // Public extra data about our mod that Forge uses in the mods listing page for more information.
-    @Mod.Metadata(Naming.ID)
+    @Mod.Metadata(Reference.Naming.ID)
     public static ModMetadata metadata;
 
     // Creative tab instantiation
-    public static CreativeTabs TAB = new CreativeTabRegistry(Naming.NAME);
+    public static CreativeTabs TAB = new CreativeTabRegistry(Reference.Naming.NAME);
 
     @SidedProxy(clientSide = "projektor.proxy.ClientProxy", serverSide = "projektor.proxy.CommonProxy")
     public static CommonProxy PROXY;
@@ -38,7 +36,7 @@ public class Projektor
         INSTANCE = this;
 
         LogHelper.info("Setting up metaData...");
-        metadata = MetaData.init(metadata);
+        metadata = Reference.MetaData.init(metadata);
 
         LogHelper.info("Registering Blocks...");
         BlockRegistry.init();

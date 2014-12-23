@@ -11,9 +11,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import projektor.Projektor;
+import projektor.Reference;
 import projektor.proxy.CommonProxy;
-import projektor.reference.Naming;
-import projektor.reference.Texture;
 
 public class ProjectorBlock extends BlockContainer
 {
@@ -22,7 +21,7 @@ public class ProjectorBlock extends BlockContainer
         super(Material.iron);
         this.setHardness(2F);
         this.setResistance(50F);
-        this.setBlockName(Naming.PROJECTOR);
+        this.setBlockName(Reference.Naming.PROJECTOR);
         this.setCreativeTab(Projektor.TAB);
     }
 
@@ -38,7 +37,7 @@ public class ProjectorBlock extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ir)
     {
-        blockIcon = ir.registerIcon(Texture.IIcon.DUMMY);
+        blockIcon = ir.registerIcon(Reference.IIcon.DUMMY);
     }
 
     @Override

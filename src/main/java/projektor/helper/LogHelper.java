@@ -2,7 +2,7 @@ package projektor.helper;
 
 import cpw.mods.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
-import projektor.reference.Naming;
+import projektor.Reference;
 
 /**
  * Helper class for logging
@@ -19,7 +19,7 @@ public class LogHelper
      */
     public static void log(Level level, Object obj)
     {
-        FMLLog.log(Naming.ID, level, String.valueOf(obj));
+        FMLLog.log(Reference.Naming.ID, level, String.valueOf(obj));
     }
 
     /**

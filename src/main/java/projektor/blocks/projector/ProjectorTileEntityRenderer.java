@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
+import projektor.Reference;
 import projektor.proxy.WorldProxy;
-import projektor.reference.Resource;
 
 public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 {
@@ -35,10 +35,10 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
             GL11.glRotatef((facing * 90.0F), 0.0F, 1.0F, 0.0F);
             if (blueprintProjector.getHasBlueprint())
             {
-                bindTexture(Resource.Model.PROJECTOR_ON);
+                bindTexture(Reference.Model.PROJECTOR_ON);
             } else
             {
-                bindTexture(Resource.Model.PROJECTOR_OFF);
+                bindTexture(Reference.Model.PROJECTOR_OFF);
             }
             model.render(0.0625F);
             GL11.glPopMatrix();
