@@ -11,6 +11,7 @@ import projektor.helper.LogHelper;
 import projektor.proxy.CommonProxy;
 import projektor.registry.BlockRegistry;
 import projektor.registry.CreativeTabRegistry;
+import projektor.registry.DemoSchematicRegistry;
 
 @Mod(modid = Reference.Naming.ID, name = Reference.Naming.NAME, version = Reference.Versioning.VERSION_FULL, acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.0.1180,)")
 public class Projektor
@@ -40,6 +41,9 @@ public class Projektor
 
         LogHelper.info("Registering Blocks...");
         BlockRegistry.init();
+
+        DemoSchematicRegistry demo = new DemoSchematicRegistry();
+        demo.init();
     }
 
     @Mod.EventHandler

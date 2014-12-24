@@ -1,8 +1,17 @@
 package projektor.schematic;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
+import projektor.Projektor;
+import projektor.Reference;
 import projektor.helper.RotationHelper;
 import projektor.projector.ProjectorTileEntity;
 import projektor.proxy.WorldProxy;
@@ -11,26 +20,31 @@ import projektor.proxy.WorldProxy;
  *
  * @author jakimfett
  */
-public class BasicSchematic
+public class BasicSchematic extends Item
 {
     BlockWithMetaStorage[][][] schematicArray;
-    private static final int offset = 2;
 
-    public void BasicSchematic()
+    public BasicSchematic()
     {
+        super();
+        this.setUnlocalizedName(Reference.Naming.SCHEMATIC_DEFAULT);
+        this.setCreativeTab(Projektor.TAB);
+
         schematicArray = new BlockWithMetaStorage[1][1][1];
 
         schematicArray[0][0][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
     }
 
-    public void BasicSchematic(BlockWithMetaStorage[][][] schematicArray)
-    {
-        setSchematic(schematicArray);
-    }
-
-    public void setSchematic(BlockWithMetaStorage[][][] schematicArray)
+    public final void setSchematic(BlockWithMetaStorage[][][] schematicArray)
     {
         this.schematicArray = schematicArray;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean bool)
+    {
+        list.add(Reference.Colors.DarkCyan + "Size: " + this.schematicArray.length + "x" + this.schematicArray[0].length + "x" + this.schematicArray[0][0].length);
     }
 
     public RenderBlocks processSchematicArrayForRendering(ProjectorTileEntity tileEntity, int xCoord, int yCoord, int zCoord)
@@ -86,4 +100,10 @@ public class BasicSchematic
 
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        this.itemIcon = iconRegister.registerIcon(Reference.Naming.ID + ":" + Reference.Naming.SCHEMATIC_DEFAULT);
+    }
 }
