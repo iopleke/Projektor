@@ -5,10 +5,12 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import projektor.Reference;
 import projektor.schematic.BasicSchematic;
+import projektor.schematic.BlockWithMetaStorage;
 
 public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 {
@@ -82,10 +84,22 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
          * coordinates properly.
          */
         tessellator.setTranslation((int) -x, (int) -y, (int) -z);
-        /* Render it onto the tessellator */
-        //renderBlocks.renderBlockByRenderType(block, (int) x, (int) y + 1, (int) z);
 
-        schematic.processSchematicArrayForRendering(tileEntity, (int) x, (int) y, (int) z, 0);
+        BlockWithMetaStorage[][][] testArray = new BlockWithMetaStorage[3][1][3];
+
+        testArray[0][0][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        testArray[0][0][1] = new BlockWithMetaStorage(Blocks.stone, 0);
+        testArray[0][0][2] = new BlockWithMetaStorage(Blocks.bedrock, 0);
+        testArray[1][0][0] = new BlockWithMetaStorage(Blocks.clay, 0);
+        testArray[1][0][1] = new BlockWithMetaStorage(Blocks.brick_block, 0);
+        testArray[1][0][2] = new BlockWithMetaStorage(Blocks.wool, 2);
+        testArray[2][0][0] = new BlockWithMetaStorage(Blocks.cobblestone, 0);
+        testArray[2][0][1] = new BlockWithMetaStorage(Blocks.soul_sand, 0);
+        testArray[2][0][2] = new BlockWithMetaStorage(Blocks.bookshelf, 0);
+
+        schematic.setSchematic(testArray);
+        /* Process the schematic for rendering onto the tessellator */
+        schematic.processSchematicArrayForRendering(tileEntity, (int) x, (int) y, (int) z);
 
         /* Render from the tessellator to the screen */
         tessellator.draw();

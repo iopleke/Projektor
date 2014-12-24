@@ -34,7 +34,7 @@ public class BasicSchematic
         this.schematicArray = schematicArray;
     }
 
-    public RenderBlocks processSchematicArrayForRendering(TileEntity tileEntity, int xCoord, int yCoord, int zCoord, int side)
+    public RenderBlocks processSchematicArrayForRendering(TileEntity tileEntity, int xCoord, int yCoord, int zCoord)
     {
         /* create the fake world */
         WorldProxy proxy = new WorldProxy(tileEntity.getWorldObj(), (int) xCoord, (int) yCoord, (int) zCoord, 15);
@@ -43,22 +43,37 @@ public class BasicSchematic
         /* Initialize a fake render-blocks for our proxy world */
         RenderBlocks renderBlocks = new RenderBlocks(proxy);
 
-        int xSize = schematicArray.length;
-
-        for (int xFor = 0; xFor < xSize; xFor++)
+        for (int xIndex = 0; xIndex < schematicArray.length; xIndex++)
         {
-            int ySize = schematicArray[xFor].length;
-            for (int yFor = 0; yFor < ySize; yFor++)
+            for (int yIndex = 0; yIndex < schematicArray[xIndex].length; yIndex++)
             {
-                int zSize = schematicArray[xFor][yFor].length;
-                for (int zFor = 0; zFor < zSize; zFor++)
+                for (int zIndex = 0; zIndex < schematicArray[xIndex][yIndex].length; zIndex++)
                 {
-                    Block blockFor = schematicArray[xFor][yFor][zFor].getBlock();
-                    proxy.setBlockMetadata(schematicArray[xFor][yFor][zFor].getMeta());
-                    proxy.setBlock(blockFor);
+                    Block blockFor = schematicArray[xIndex][yIndex][zIndex].getBlock();
 
-                    // this is going to render starting at the "middle", because the offset isn't being halved (in the array 0,0,0 is the corner, for rendering it's middle bottom)
-                    renderBlocks.renderBlockByRenderType(blockFor, (int) xCoord + xFor + dir.offsetX, (int) yCoord + yFor + dir.offsetY, (int) zCoord + zFor + dir.offsetZ);
+                    int xRender = (int) xCoord + xIndex - schematicArray.length / 2;
+                    int yRender = (int) yCoord + yIndex;
+                    int zRender = (int) zCoord + zIndex + dir.offsetZ - schematicArray[xIndex][yIndex].length;
+
+                    if (dir.offsetX > 0)
+                    {
+
+                        xRender = (int) xCoord + (xIndex * -1) + dir.offsetX + schematicArray.length;
+                        zRender = (int) zCoord + zIndex - schematicArray[xIndex][yIndex].length / 2;
+                    }
+                    if (dir.offsetX < 0)
+                    {
+
+                        xRender = (int) xCoord + xIndex + dir.offsetX - schematicArray.length;
+                        zRender = (int) zCoord + (zIndex * -1) + schematicArray[xIndex][yIndex].length / 2;
+                    }
+                    if (dir.offsetZ > 0)
+                    {
+                        xRender = (int) xCoord + (xIndex * -1) + schematicArray.length / 2;
+                        zRender = (int) zCoord + (zIndex * -1) + dir.offsetZ + schematicArray[xIndex][yIndex].length;
+                    }
+
+                    renderBlocks.renderBlockByRenderType(blockFor, xRender, yRender, zRender);
                 }
             }
         }

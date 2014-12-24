@@ -37,16 +37,7 @@ public class WorldProxy implements IBlockAccess
     @Override
     public Block getBlock(int x, int y, int z)
     {
-        if (x == this.x && y == this.y && z == this.z)
-        {
-            return block;
-        }
         return Blocks.air;
-    }
-
-    public void setBlock(Block block)
-    {
-        this.block = block;
     }
 
     @Override
