@@ -26,6 +26,11 @@ public class BasicSchematic
 
     public void BasicSchematic(BlockWithMetaStorage[][][] schematicArray)
     {
+        setSchematic(schematicArray);
+    }
+
+    public void setSchematic(BlockWithMetaStorage[][][] schematicArray)
+    {
         this.schematicArray = schematicArray;
     }
 
@@ -38,9 +43,6 @@ public class BasicSchematic
         /* Initialize a fake render-blocks for our proxy world */
         RenderBlocks renderBlocks = new RenderBlocks(proxy);
 
-        schematicArray = new BlockWithMetaStorage[1][1][1];
-
-        schematicArray[0][0][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
         int xSize = schematicArray.length;
 
         for (int xFor = 0; xFor < xSize; xFor++)
@@ -54,8 +56,8 @@ public class BasicSchematic
                     Block blockFor = schematicArray[xFor][yFor][zFor].getBlock();
                     proxy.setBlockMetadata(schematicArray[xFor][yFor][zFor].getMeta());
                     proxy.setBlock(blockFor);
-                    // this is going to render starting at the "middle", because the offset isn't being halved (in the array 0,0,0 is the corner, for rendering it's middle bottom)
 
+                    // this is going to render starting at the "middle", because the offset isn't being halved (in the array 0,0,0 is the corner, for rendering it's middle bottom)
                     renderBlocks.renderBlockByRenderType(blockFor, (int) xCoord + xFor + dir.offsetX, (int) yCoord + yFor + dir.offsetY, (int) zCoord + zFor + dir.offsetZ);
                 }
             }
