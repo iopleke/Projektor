@@ -88,7 +88,7 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
         BlockWithMetaStorage[][][] testArray = new BlockWithMetaStorage[3][1][3];
 
         testArray[0][0][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        testArray[0][0][1] = new BlockWithMetaStorage(Blocks.stone, 2);
+        testArray[0][0][1] = new BlockWithMetaStorage(Blocks.stone, 0);
         testArray[0][0][2] = new BlockWithMetaStorage(Blocks.bedrock, 0);
         testArray[1][0][0] = new BlockWithMetaStorage(Blocks.clay, 0);
         testArray[1][0][1] = new BlockWithMetaStorage(Blocks.brick_block, 0);
