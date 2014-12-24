@@ -1,6 +1,5 @@
 package projektor.schematic;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -37,11 +36,11 @@ public class BasicSchematic
     public RenderBlocks processSchematicArrayForRendering(TileEntity tileEntity, int xCoord, int yCoord, int zCoord)
     {
         /* create the fake world */
-        WorldProxy proxy = new WorldProxy(tileEntity.getWorldObj(), (int) xCoord, (int) yCoord, (int) zCoord, 15);
-        ForgeDirection dir = RotationHelper.getDirectionFromMetadata(tileEntity.getBlockMetadata());
-
+        WorldProxy proxy = new WorldProxy(tileEntity.getWorldObj(), 15);
         /* Initialize a fake render-blocks for our proxy world */
         RenderBlocks renderBlocks = new RenderBlocks(proxy);
+
+        ForgeDirection dir = RotationHelper.getDirectionFromMetadata(tileEntity.getBlockMetadata());
 
         for (int xIndex = 0; xIndex < schematicArray.length; xIndex++)
         {
@@ -49,7 +48,6 @@ public class BasicSchematic
             {
                 for (int zIndex = 0; zIndex < schematicArray[xIndex][yIndex].length; zIndex++)
                 {
-                    Block blockFor = schematicArray[xIndex][yIndex][zIndex].getBlock();
 
                     int xRender = (int) xCoord + xIndex - schematicArray.length / 2;
                     int yRender = (int) yCoord + yIndex;
@@ -57,7 +55,6 @@ public class BasicSchematic
 
                     if (dir.offsetX > 0)
                     {
-
                         xRender = (int) xCoord + (xIndex * -1) + dir.offsetX + schematicArray.length;
                         zRender = (int) zCoord + zIndex - schematicArray[xIndex][yIndex].length / 2;
                     }
@@ -73,7 +70,9 @@ public class BasicSchematic
                         zRender = (int) zCoord + (zIndex * -1) + dir.offsetZ + schematicArray[xIndex][yIndex].length;
                     }
 
-                    renderBlocks.renderBlockByRenderType(blockFor, xRender, yRender, zRender);
+                    proxy.setCoordinates(xRender, yRender, zRender);
+                    proxy.setBlockMetadata(schematicArray[xIndex][yIndex][zIndex].getMeta());
+                    renderBlocks.renderBlockByRenderType(schematicArray[xIndex][yIndex][zIndex].getBlock(), xRender, yRender, zRender);
                 }
             }
         }
