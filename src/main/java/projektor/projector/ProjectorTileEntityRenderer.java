@@ -46,12 +46,12 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 
             if (blueprintProjector.getHasWorldObj())
             {
-                this.renderGhostBlockAt(tileEntity, x, y, z);
+                this.renderGhostBlockAt(blueprintProjector, x, y, z);
             }
         }
     }
 
-    public void renderGhostBlockAt(TileEntity tileEntity, double x, double y, double z)
+    public void renderGhostBlockAt(ProjectorTileEntity blueprintProjector, double x, double y, double z)
     {
 
         /* Mount the blocks texture */
@@ -99,7 +99,7 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 
         schematic.setSchematic(testArray);
         /* Process the schematic for rendering onto the tessellator */
-        schematic.processSchematicArrayForRendering(tileEntity, (int) x, (int) y, (int) z);
+        schematic.processSchematicArrayForRendering(blueprintProjector, (int) x, (int) y, (int) z);
 
         /* Render from the tessellator to the screen */
         tessellator.draw();
