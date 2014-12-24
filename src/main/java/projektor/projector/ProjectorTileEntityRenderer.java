@@ -1,25 +1,24 @@
 package projektor.projector;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import projektor.Reference;
-import projektor.proxy.WorldProxy;
+import projektor.schematic.BasicSchematic;
 
 public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 {
     ProjectorModel model;
+    BasicSchematic schematic;
 
     public ProjectorTileEntityRenderer()
     {
         this.model = new ProjectorModel();
+        this.schematic = new BasicSchematic();
     }
 
     @Override
@@ -53,11 +52,6 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
     public void renderGhostBlockAt(TileEntity tileEntity, double x, double y, double z)
     {
 
-        /* Configure your rendering properties here */
-        Block block = Blocks.anvil;
-        int metadata = 0;
-        WorldProxy proxy = new WorldProxy(tileEntity.getWorldObj(), block, metadata, (int) x, (int) y, (int) z, 15);
-
         /* Mount the blocks texture */
         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
         /* Turn off item lighting */
@@ -78,9 +72,6 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glTranslated(x, y, z);
-
-        /* Initialize a fake render-blocks for our proxy world */
-        RenderBlocks renderBlocks = new RenderBlocks(proxy);
         /* Get the global tessellator */
         Tessellator tessellator = Tessellator.instance;
         tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
@@ -92,7 +83,10 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
          */
         tessellator.setTranslation((int) -x, (int) -y, (int) -z);
         /* Render it onto the tessellator */
-        renderBlocks.renderBlockByRenderType(block, (int) x, (int) y + 1, (int) z);
+        //renderBlocks.renderBlockByRenderType(block, (int) x, (int) y + 1, (int) z);
+
+        schematic.processSchematicArrayForRendering(tileEntity, (int) x, (int) y, (int) z, 0);
+
         /* Render from the tessellator to the screen */
         tessellator.draw();
         /* Reset the tessellator translation */

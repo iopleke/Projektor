@@ -23,11 +23,11 @@ public class WorldProxy implements IBlockAccess
     int brightness;
     int x, y, z;
 
-    public WorldProxy(IBlockAccess world, Block block, int meta, int x, int y, int z, int brightness)
+    public WorldProxy(IBlockAccess world, int x, int y, int z, int brightness)
     {
         this.world = world;
-        this.block = block;
-        this.meta = meta;
+        this.block = Blocks.air;
+        this.meta = 0;
         this.brightness = brightness;
         this.x = x;
         this.y = y;
@@ -42,6 +42,11 @@ public class WorldProxy implements IBlockAccess
             return block;
         }
         return Blocks.air;
+    }
+
+    public void setBlock(Block block)
+    {
+        this.block = block;
     }
 
     @Override
@@ -65,6 +70,11 @@ public class WorldProxy implements IBlockAccess
             return meta;
         }
         return 0;
+    }
+
+    public void setBlockMetadata(int meta)
+    {
+        this.meta = meta;
     }
 
     @Override
