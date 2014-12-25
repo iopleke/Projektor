@@ -24,10 +24,10 @@ public class BasicSchematic extends Item
 {
     BlockWithMetaStorage[][][] schematicArray;
 
-    public BasicSchematic()
+    public BasicSchematic(String schematicName)
     {
         super();
-        this.setUnlocalizedName(Reference.Naming.SCHEMATIC_DEFAULT);
+        this.setUnlocalizedName(Reference.Naming.SCHEMATIC_DEFAULT + schematicName);
         this.setCreativeTab(Projektor.TAB);
 
         schematicArray = new BlockWithMetaStorage[1][1][1];
@@ -37,7 +37,25 @@ public class BasicSchematic extends Item
 
     public final void setSchematic(BlockWithMetaStorage[][][] schematicArray)
     {
-        this.schematicArray = schematicArray;
+        this.schematicArray = iterateAndFill(schematicArray);
+    }
+
+    public final BlockWithMetaStorage[][][] iterateAndFill(BlockWithMetaStorage[][][] schematicArray)
+    {
+        for (int xIndex = 0; xIndex < schematicArray.length; xIndex++)
+        {
+            for (int yIndex = 0; yIndex < schematicArray[xIndex].length; yIndex++)
+            {
+                for (int zIndex = 0; zIndex < schematicArray[xIndex][yIndex].length; zIndex++)
+                {
+                    if (schematicArray[xIndex][yIndex][zIndex] == null)
+                    {
+                        schematicArray[xIndex][yIndex][zIndex] = new BlockWithMetaStorage(Blocks.air, 0);
+                    }
+                }
+            }
+        }
+        return schematicArray;
     }
 
     @Override

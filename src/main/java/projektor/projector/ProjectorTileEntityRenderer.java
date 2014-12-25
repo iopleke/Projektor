@@ -5,12 +5,11 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import projektor.Reference;
+import projektor.registry.DemoSchematicRegistry;
 import projektor.schematic.BasicSchematic;
-import projektor.schematic.BlockWithMetaStorage;
 
 public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 {
@@ -20,7 +19,7 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
     public ProjectorTileEntityRenderer()
     {
         this.model = new ProjectorModel();
-        this.schematic = new BasicSchematic();
+        this.schematic = DemoSchematicRegistry.threeByThreeByThreeSchematic;
     }
 
     @Override
@@ -85,19 +84,6 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
          */
         tessellator.setTranslation((int) -x, (int) -y, (int) -z);
 
-        BlockWithMetaStorage[][][] testArray = new BlockWithMetaStorage[3][1][3];
-
-        testArray[0][0][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        testArray[0][0][1] = new BlockWithMetaStorage(Blocks.stone, 0);
-        testArray[0][0][2] = new BlockWithMetaStorage(Blocks.bedrock, 0);
-        testArray[1][0][0] = new BlockWithMetaStorage(Blocks.clay, 0);
-        testArray[1][0][1] = new BlockWithMetaStorage(Blocks.brick_block, 0);
-        testArray[1][0][2] = new BlockWithMetaStorage(Blocks.wool, 2);
-        testArray[2][0][0] = new BlockWithMetaStorage(Blocks.cobblestone, 0);
-        testArray[2][0][1] = new BlockWithMetaStorage(Blocks.soul_sand, 0);
-        testArray[2][0][2] = new BlockWithMetaStorage(Blocks.bookshelf, 0);
-
-        schematic.setSchematic(testArray);
         /* Process the schematic for rendering onto the tessellator */
         schematic.processSchematicArrayForRendering(blueprintProjector, (int) x, (int) y, (int) z);
 
