@@ -1,73 +1,52 @@
+## Edits of this file MUST be in their own commit ##
+## Whenever possible, use wildcards to keep this clean ##
+## Alphabetize, or else ##
+## Put your edits in the proper section, or I'll grouch at you ##
+
+## General housekeeping
+*.bat
 *.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-## General stuff to keep the repo clean
-*.class
-dist
-download
-.DS_Store
-push.sh
-remotebuild.py
-CREDITS-fml.txt
-options.txt
-MinecraftForge-Credits.txt
-MinecraftForge-License.txt
-lib/Mekanism*
-lib/Universal*
-lib/1.6.4/
-._*
-*.txt
-*.log
-
-## gradle
-/.gradle
-/build
-/eclipse
-## ForgeGradle
-/run
-/out
-
-## idea
-/.idea
 *.iml
 *.ipr
 *.iws
+*.json
+*.log
+*.py
+*.sh
+*.txt
+*.xcf
+*.xml
+.cache
+lib/
+natives/
+
+## Because Macs
+.DS_Store
+._*
+
+## Gradle
+.gradle/
+build/
+gradle/
+gradlew
+out/
+output/
+run/
+
+## sublime
+*.sublime*
 
 ## eclipse
-/.settings
-/.metadata
-/.classpath
-/.project
-/bin
+.classpath
+.metadata/
+.project
+.settings/
+bin/
+eclipse/
+
+## Intellij IDEA
+.idea/
 
 ## netbeans
-.nb*
-/nbproject/private/
-/nbbuild/
-output/
-gradlew
-gradlew.bat
-gradle/
-install.bat
-.cache
-build.xml
-natives/
+nbbuild/
 nbproject/
-
-## minecraft
-/config/
-/mods/
-/saves/
-/logs/
-/crash-reports/
-/screenshots/

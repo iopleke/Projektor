@@ -2,6 +2,8 @@ package projektor.projector;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,6 +14,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import projektor.Projektor;
 import projektor.Reference;
+import projektor.helper.StackHelper;
 import projektor.proxy.CommonProxy;
 
 public class ProjectorBlock extends BlockContainer
@@ -62,5 +65,34 @@ public class ProjectorBlock extends BlockContainer
     public boolean isOpaqueCube()
     {
         return false;
+    }
+
+    public void addStacksDroppedOnBlockBreak(TileEntity tileEntity, ArrayList<ItemStack> itemStacks)
+    {
+        if (tileEntity instanceof ProjectorTileEntity)
+        {
+            ProjectorTileEntity projector = (ProjectorTileEntity) tileEntity;
+            if (projector.getHasBlueprint())
+            {
+                itemStacks.add(projector.getBluePrint());
+            }
+        }
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int metaData)
+    {
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        if (tileEntity != null)
+        {
+            ArrayList<ItemStack> droppedStacks = new ArrayList<ItemStack>();
+            addStacksDroppedOnBlockBreak(tileEntity, droppedStacks);
+            for (ItemStack itemstack : droppedStacks)
+            {
+                StackHelper.throwItemStack(world, itemstack, x, y, z);
+            }
+            super.breakBlock(world, x, y, z, block, metaData);
+        }
+
     }
 }

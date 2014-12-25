@@ -32,4 +32,9 @@ public class ProjectorTileEntity extends TileEntity
         return blueprint != null;
     }
 
+    public ItemStack getBluePrint()
+    {
+        return blueprint;
+    }
+
 }
