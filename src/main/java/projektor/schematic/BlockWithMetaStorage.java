@@ -27,4 +27,9 @@ public class BlockWithMetaStorage
         return meta;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Block:" + block.getUnlocalizedName() + " Meta:" + meta;
+    }
 }

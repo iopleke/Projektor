@@ -13,6 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import projektor.Projektor;
 import projektor.Reference;
 import projektor.helper.RotationHelper;
+import projektor.io.IO;
 import projektor.projector.ProjectorTileEntity;
 import projektor.proxy.WorldProxy;
 
@@ -22,7 +23,7 @@ import projektor.proxy.WorldProxy;
  */
 public class BasicSchematic extends Item
 {
-    BlockWithMetaStorage[][][] schematicArray;
+    private BlockWithMetaStorage[][][] schematicArray;
 
     public BasicSchematic(String schematicName)
     {
@@ -30,14 +31,29 @@ public class BasicSchematic extends Item
         this.setUnlocalizedName(Reference.Naming.SCHEMATIC_DEFAULT + schematicName);
         this.setCreativeTab(Projektor.TAB);
 
-        schematicArray = new BlockWithMetaStorage[1][1][1];
+        schematicArray = new BlockWithMetaStorage[2][2][5];
 
         schematicArray[0][0][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        schematicArray[0][0][1] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        schematicArray[0][0][4] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        schematicArray[0][1][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        schematicArray[0][1][2] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        schematicArray[1][0][2] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        schematicArray[1][0][3] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        schematicArray[1][1][3] = new BlockWithMetaStorage(Blocks.anvil, 0);
+        setSchematic(schematicArray);
+        IO.serialize(this.schematicArray);
+        schematicArray = IO.deserialize();
     }
 
     public final void setSchematic(BlockWithMetaStorage[][][] schematicArray)
     {
         this.schematicArray = iterateAndFill(schematicArray);
+    }
+
+    public BlockWithMetaStorage[][][] getSchematicArray()
+    {
+        return schematicArray;
     }
 
     public final BlockWithMetaStorage[][][] iterateAndFill(BlockWithMetaStorage[][][] schematicArray)
