@@ -2,6 +2,7 @@ package projektor.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
+import projektor.io.IO;
 import projektor.schematic.BasicSchematic;
 import projektor.schematic.BlockWithMetaStorage;
 
@@ -11,6 +12,7 @@ import projektor.schematic.BlockWithMetaStorage;
  */
 public class DemoSchematicRegistry
 {
+
     public static BasicSchematic threeByOneByThreeSchematic;
     public static BasicSchematic threeByThreeByThreeSchematic;
 
@@ -23,6 +25,12 @@ public class DemoSchematicRegistry
         threeByThreeByThreeSchematic = new BasicSchematic("3x3x3");
         threeByThreeByThreeSchematic.setSchematic(this.threeByThreeByThree());
         GameRegistry.registerItem(threeByThreeByThreeSchematic, threeByThreeByThreeSchematic.getUnlocalizedName());
+
+        BlockWithMetaStorage[][][] schematicArray = new BlockWithMetaStorage[1][1][1];
+
+        schematicArray[0][0][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
+
+        IO.serialize(schematicArray, "defaultSchematic");
 
     }
 

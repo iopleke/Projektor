@@ -23,6 +23,7 @@ import projektor.proxy.WorldProxy;
  */
 public class BasicSchematic extends Item
 {
+
     private BlockWithMetaStorage[][][] schematicArray;
 
     public BasicSchematic(String schematicName)
@@ -31,19 +32,7 @@ public class BasicSchematic extends Item
         this.setUnlocalizedName(Reference.Naming.SCHEMATIC_DEFAULT + schematicName);
         this.setCreativeTab(Projektor.TAB);
 
-        schematicArray = new BlockWithMetaStorage[2][2][5];
-
-        schematicArray[0][0][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        schematicArray[0][0][1] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        schematicArray[0][0][4] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        schematicArray[0][1][0] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        schematicArray[0][1][2] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        schematicArray[1][0][2] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        schematicArray[1][0][3] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        schematicArray[1][1][3] = new BlockWithMetaStorage(Blocks.anvil, 0);
-        setSchematic(schematicArray);
-        IO.serialize(this.schematicArray);
-        schematicArray = IO.deserialize();
+        schematicArray = IO.deserialize("defaultSchematic");
     }
 
     public final void setSchematic(BlockWithMetaStorage[][][] schematicArray)
