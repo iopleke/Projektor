@@ -24,7 +24,7 @@ public class IO
                 {
                     for (BlockWithMetaStorage block : dim1)
                     {
-                        fos.write(("<" + block.getBlock().getUnlocalizedName().split("\\.", 2)[1] + ":" + block.getMeta() + "> ").getBytes());
+                        fos.write(("<" + GameRegistry.findUniqueIdentifierFor(block.getBlock()).toString() + ":" + block.getMeta() + "> ").getBytes());
                     }
                     fos.write(("\n").getBytes());
                 }
@@ -59,7 +59,8 @@ public class IO
                 {
                     if (block.equals("")) continue;
                     block = block.substring(1, block.length() - 1);
-                    dim3[id3][id2][id1] = new BlockWithMetaStorage(GameRegistry.findBlock("minecraft", block.split(":")[0]), Integer.getInteger(block.split(":")[1], 0));
+                    String[] parts = block.split(":");
+                    dim3[id3][id2][id1] = new BlockWithMetaStorage(GameRegistry.findBlock(parts[0], parts[1]), Integer.getInteger(parts[2], 0));
                     id1++;
                 }
                 id1 = 0;
