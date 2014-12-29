@@ -14,7 +14,6 @@
 *.py
 *.sh
 *.txt
-*.xcf
 *.xml
 .cache
 lib/
