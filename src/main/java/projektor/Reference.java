@@ -60,6 +60,13 @@ public class Reference
         public static final ResourceLocation PROJECTOR_ON = new ResourceLocation(Reference.Naming.ID, Reference.Model.MODEL_DIR + "ProjectorModelOff.png");
     }
 
+    public static final class GUI
+    {
+        private static final String GUI_DIR = "textures/gui/";
+        public static final ResourceLocation PROJECTOR = new ResourceLocation(Reference.Naming.ID, Reference.GUI.GUI_DIR + "projector.png");
+
+    }
+
     public static final class IIcon
     {
         private static final String PREFIX = Reference.Naming.ID + ":";
