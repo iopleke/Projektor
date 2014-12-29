@@ -8,6 +8,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -94,5 +95,21 @@ public class ProjectorBlock extends BlockContainer
             super.breakBlock(world, x, y, z, block, metaData);
         }
 
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float b, float c, float g)
+    {
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        if (tileEntity != null && !player.isSneaking())
+        {
+            if (!world.isRemote)
+            {
+                player.openGui(Projektor.INSTANCE, 0, world, x, y, z);
+            }
+            return true;
+        }
+
+        return false;
     }
 }

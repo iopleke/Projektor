@@ -6,7 +6,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import projektor.handler.GUIHandler;
 import projektor.helper.LogHelper;
 import projektor.proxy.CommonProxy;
 import projektor.registry.BlockRegistry;
@@ -31,6 +33,8 @@ public class Projektor
     @SidedProxy(clientSide = "projektor.proxy.ClientProxy", serverSide = "projektor.proxy.CommonProxy")
     public static CommonProxy PROXY;
 
+    public static GUIHandler guiHandler = new GUIHandler();
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -44,6 +48,9 @@ public class Projektor
 
         DemoSchematicRegistry demo = new DemoSchematicRegistry();
         demo.init();
+
+        // Register GUI handler
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
     }
 
     @Mod.EventHandler
