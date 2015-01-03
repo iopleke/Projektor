@@ -16,6 +16,7 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
 
     public ProjectorTileEntity()
     {
+        super();
         schematic = null;
     }
 
