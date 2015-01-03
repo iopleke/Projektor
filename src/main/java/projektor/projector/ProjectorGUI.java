@@ -11,12 +11,9 @@ import projektor.Reference;
 public class ProjectorGUI extends GuiContainer
 {
 
-    private final ProjectorTileEntity projector;
-
     public ProjectorGUI(InventoryPlayer inventoryPlayer, ProjectorTileEntity projector)
     {
         super(new ProjectorContainer(inventoryPlayer, projector));
-        this.projector = projector;
 
     }
 

@@ -5,10 +5,11 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import projektor.Reference;
-import projektor.registry.DemoSchematicRegistry;
 import projektor.schematic.BasicSchematic;
 
 public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
@@ -19,7 +20,6 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
     public ProjectorTileEntityRenderer()
     {
         this.model = new ProjectorModel();
-        this.schematic = DemoSchematicRegistry.threeByThreeByThreeSchematic;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
             model.render(0.0625F);
             GL11.glPopMatrix();
 
-            if (blueprintProjector.getHasWorldObj())
+            if (blueprintProjector.getHasWorldObj() && blueprintProjector.getHasBlueprint())
             {
                 this.renderGhostBlockAt(blueprintProjector, x, y, z);
             }
@@ -52,7 +52,6 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 
     public void renderGhostBlockAt(ProjectorTileEntity blueprintProjector, double x, double y, double z)
     {
-
         /* Mount the blocks texture */
         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
         /* Turn off item lighting */
@@ -85,7 +84,16 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
         tessellator.setTranslation((int) -x, (int) -y, (int) -z);
 
         /* Process the schematic for rendering onto the tessellator */
-        schematic.processSchematicArrayForRendering(blueprintProjector, (int) x, (int) y, (int) z);
+        if (blueprintProjector.getHasBlueprint())
+        {
+            ItemStack stack = blueprintProjector.getSchematic();
+            Item item = stack.getItem();
+            if (item instanceof BasicSchematic)
+            {
+                this.schematic = ((BasicSchematic) item);
+            }
+            this.schematic.processSchematicArrayForRendering(blueprintProjector, (int) x, (int) y, (int) z);
+        }
 
         /* Render from the tessellator to the screen */
         tessellator.draw();

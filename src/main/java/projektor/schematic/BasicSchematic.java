@@ -29,8 +29,8 @@ public class BasicSchematic extends Item
     public BasicSchematic(String schematicName)
     {
         super();
-        this.setUnlocalizedName(Reference.Naming.SCHEMATIC_DEFAULT + schematicName);
         this.setCreativeTab(Projektor.TAB);
+        this.setUnlocalizedName(Reference.Naming.SCHEMATIC_DEFAULT + schematicName);
 
         schematicArray = IO.deserialize("defaultSchematic");
     }

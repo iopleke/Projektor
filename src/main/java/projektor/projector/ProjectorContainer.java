@@ -18,6 +18,7 @@ public class ProjectorContainer extends Container
         this.projector = projector;
 
         this.bindPlayerInventory(inventoryPlayer);
+        this.addSlotToContainer(new ProjectorSchematicSlot(this.projector, 0, 118, 28));
     }
 
     private void bindPlayerInventory(InventoryPlayer inventoryPlayer)

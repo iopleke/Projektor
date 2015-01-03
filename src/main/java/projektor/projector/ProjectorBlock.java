@@ -75,7 +75,7 @@ public class ProjectorBlock extends BlockContainer
             ProjectorTileEntity projector = (ProjectorTileEntity) tileEntity;
             if (projector.getHasBlueprint())
             {
-                itemStacks.add(projector.getBluePrint());
+                itemStacks.add(projector.getSchematic());
             }
         }
     }
