@@ -4,7 +4,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants;
 import projektor.schematic.BasicSchematic;
 
 public class ProjectorTileEntity extends TileEntity implements IInventory
@@ -133,5 +136,32 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
             }
         }
         return false;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbttagcompound)
+    {
+        super.readFromNBT(nbttagcompound);
+        NBTTagList nbttaglist = nbttagcompound.getTagList("Schematic", Constants.NBT.TAG_COMPOUND);
+
+        NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(0);
+        schematic = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbttagcompound)
+    {
+        super.writeToNBT(nbttagcompound);
+        NBTTagList nbttaglist = new NBTTagList();
+        if (schematic != null)
+        {
+            NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+            nbttagcompound1.setByte("Slot", (byte) 0);
+            schematic.writeToNBT(nbttagcompound1);
+            nbttaglist.appendTag(nbttagcompound1);
+        }
+
+        nbttagcompound.setTag("Schematic", nbttaglist);
     }
 }
