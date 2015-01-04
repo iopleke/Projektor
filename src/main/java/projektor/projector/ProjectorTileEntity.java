@@ -158,7 +158,6 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
         if (schematic != null)
         {
             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-            nbttagcompound1.setByte("Slot", (byte) 0);
             schematic.writeToNBT(nbttagcompound1);
             nbttaglist.appendTag(nbttagcompound1);
         }
