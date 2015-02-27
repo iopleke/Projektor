@@ -10,8 +10,8 @@ import org.lwjgl.opengl.GL11;
 
 public class ProjectorItemRenderer implements IItemRenderer
 {
-    TileEntitySpecialRenderer tesr;
     private final TileEntity te;
+    TileEntitySpecialRenderer tesr;
 
     public ProjectorItemRenderer(TileEntitySpecialRenderer render, TileEntity toRender)
     {
@@ -26,12 +26,6 @@ public class ProjectorItemRenderer implements IItemRenderer
     }
 
     @Override
-    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
-    {
-        return true;
-    }
-
-    @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
         if (type == IItemRenderer.ItemRenderType.ENTITY)
@@ -39,5 +33,11 @@ public class ProjectorItemRenderer implements IItemRenderer
             GL11.glTranslatef(-0.5F, 0.0F, -0.5F);
         }
         this.tesr.renderTileEntityAt(this.te, 0.0D, 0.0D, 0.0D, 0.0625F);
+    }
+
+    @Override
+    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+    {
+        return true;
     }
 }
