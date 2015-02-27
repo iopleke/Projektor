@@ -52,27 +52,41 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
 
     public void renderGhostBlockAt(ProjectorTileEntity blueprintProjector, double x, double y, double z)
     {
-        /* Mount the blocks texture */
+        /*
+         * Mount the blocks texture
+         */
         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
-        /* Turn off item lighting */
+        /*
+         * Turn off item lighting
+         */
         RenderHelper.disableStandardItemLighting();
 
-        /* If the player has occlusion enabled */
+        /*
+         * If the player has occlusion enabled
+         */
         if (Minecraft.isAmbientOcclusionEnabled())
         {
-            GL11.glShadeModel(GL11.GL_SMOOTH); /* Use smooth shading */
+            GL11.glShadeModel(GL11.GL_SMOOTH); /*
+             * Use smooth shading
+             */
 
         } else
         {
-            GL11.glShadeModel(GL11.GL_FLAT); /* ... or not, that's cool */
+            GL11.glShadeModel(GL11.GL_FLAT); /*
+             * ... or not, that's cool
+             */
 
         }
 
-        /* Store and translate to our draw position */
+        /*
+         * Store and translate to our draw position
+         */
         GL11.glPushMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glTranslated(x, y, z);
-        /* Get the global tessellator */
+        /*
+         * Get the global tessellator
+         */
         Tessellator tessellator = Tessellator.instance;
         tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
         tessellator.startDrawingQuads();
@@ -83,7 +97,9 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
          */
         tessellator.setTranslation((int) -x, (int) -y, (int) -z);
 
-        /* Process the schematic for rendering onto the tessellator */
+        /*
+         * Process the schematic for rendering onto the tessellator
+         */
         if (blueprintProjector.getHasBlueprint())
         {
             ItemStack stack = blueprintProjector.getSchematic();
@@ -95,14 +111,22 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
             this.schematic.processSchematicArrayForRendering(blueprintProjector, (int) x, (int) y, (int) z);
         }
 
-        /* Render from the tessellator to the screen */
+        /*
+         * Render from the tessellator to the screen
+         */
         tessellator.draw();
-        /* Reset the tessellator translation */
+        /*
+         * Reset the tessellator translation
+         */
         tessellator.setTranslation(0, 0, 0);
-        /* Recall the previous model matrix */
+        /*
+         * Recall the previous model matrix
+         */
         GL11.glPopMatrix();
 
-        /* Restore normal lighting */
+        /*
+         * Restore normal lighting
+         */
         RenderHelper.enableStandardItemLighting();
     }
 

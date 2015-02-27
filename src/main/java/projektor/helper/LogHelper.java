@@ -15,7 +15,7 @@ public class LogHelper
      * General logging method
      *
      * @param level Level of the log
-     * @param obj object to log
+     * @param obj   object to log
      */
     public static void log(Level level, Object obj)
     {

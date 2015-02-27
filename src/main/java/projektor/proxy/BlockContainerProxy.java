@@ -21,7 +21,7 @@ public class BlockContainerProxy extends Block
      * Default constructor
      *
      * @param block The spoofed block
-     * @param side The spoofed side
+     * @param side  The spoofed side
      */
     public BlockContainerProxy(Block block, int side)
     {
