@@ -29,45 +29,6 @@ public class ProjectorBlock extends BlockContainer
         this.setCreativeTab(Projektor.TAB);
     }
 
-    @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase el, ItemStack is)
-    {
-        super.onBlockPlacedBy(world, x, y, z, el, is);
-        int facing = MathHelper.floor_double(el.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        world.setBlockMetadataWithNotify(x, y, z, facing, 2);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister ir)
-    {
-        blockIcon = ir.registerIcon(Reference.IIcon.DUMMY);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
-    {
-        return new ProjectorTileEntity();
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
-    @Override
-    public int getRenderType()
-    {
-        return CommonProxy.RENDER_ID;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
     public void addStacksDroppedOnBlockBreak(TileEntity tileEntity, ArrayList<ItemStack> itemStacks)
     {
         if (tileEntity instanceof ProjectorTileEntity)
@@ -98,6 +59,24 @@ public class ProjectorBlock extends BlockContainer
     }
 
     @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
+    {
+        return new ProjectorTileEntity();
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return CommonProxy.RENDER_ID;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float b, float c, float g)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
@@ -110,6 +89,27 @@ public class ProjectorBlock extends BlockContainer
             return true;
         }
 
+        return false;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase el, ItemStack is)
+    {
+        super.onBlockPlacedBy(world, x, y, z, el, is);
+        int facing = MathHelper.floor_double(el.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        world.setBlockMetadataWithNotify(x, y, z, facing, 2);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister ir)
+    {
+        blockIcon = ir.registerIcon(Reference.IIcon.DUMMY);
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
         return false;
     }
 }

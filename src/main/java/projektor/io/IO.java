@@ -12,31 +12,6 @@ import projektor.schematic.BlockWithMetaStorage;
 public class IO
 {
 
-    public static void serialize(BlockWithMetaStorage[][][] dim3, String fileName)
-    {
-        try
-        {
-            FileOutputStream fos = new FileOutputStream(fileName + ".txt");
-
-            for (BlockWithMetaStorage[][] dim2 : dim3)
-            {
-                for (BlockWithMetaStorage[] dim1 : dim2)
-                {
-                    for (BlockWithMetaStorage block : dim1)
-                    {
-                        fos.write(("<" + GameRegistry.findUniqueIdentifierFor(block.getBlock()).toString() + ":" + block.getMeta() + "> ").getBytes());
-                    }
-                    fos.write(("\n").getBytes());
-                }
-                fos.write(("\n\n").getBytes());
-            }
-            fos.close();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
     public static BlockWithMetaStorage[][][] deserialize(String fileName)
     {
         BlockWithMetaStorage[][][] dim3 = null;
@@ -85,5 +60,30 @@ public class IO
             e.printStackTrace();
         }
         return dim3;
+    }
+
+    public static void serialize(BlockWithMetaStorage[][][] dim3, String fileName)
+    {
+        try
+        {
+            FileOutputStream fos = new FileOutputStream(fileName + ".txt");
+
+            for (BlockWithMetaStorage[][] dim2 : dim3)
+            {
+                for (BlockWithMetaStorage[] dim1 : dim2)
+                {
+                    for (BlockWithMetaStorage block : dim1)
+                    {
+                        fos.write(("<" + GameRegistry.findUniqueIdentifierFor(block.getBlock()).toString() + ":" + block.getMeta() + "> ").getBytes());
+                    }
+                    fos.write(("\n").getBytes());
+                }
+                fos.write(("\n\n").getBytes());
+            }
+            fos.close();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

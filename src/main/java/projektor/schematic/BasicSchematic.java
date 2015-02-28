@@ -35,9 +35,11 @@ public class BasicSchematic extends Item
         schematicArray = IO.deserialize("defaultSchematic");
     }
 
-    public final void setSchematic(BlockWithMetaStorage[][][] schematicArray)
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean bool)
     {
-        this.schematicArray = iterateAndFill(schematicArray);
+        list.add(Reference.Colors.DarkCyan + "Size: " + this.schematicArray.length + "x" + this.schematicArray[0].length + "x" + this.schematicArray[0][0].length);
     }
 
     public BlockWithMetaStorage[][][] getSchematicArray()
@@ -61,13 +63,6 @@ public class BasicSchematic extends Item
             }
         }
         return schematicArray;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean bool)
-    {
-        list.add(Reference.Colors.DarkCyan + "Size: " + this.schematicArray.length + "x" + this.schematicArray[0].length + "x" + this.schematicArray[0][0].length);
     }
 
     public RenderBlocks processSchematicArrayForRendering(ProjectorTileEntity tileEntity, int xCoord, int yCoord, int zCoord)
@@ -128,5 +123,10 @@ public class BasicSchematic extends Item
     public void registerIcons(IIconRegister iconRegister)
     {
         this.itemIcon = iconRegister.registerIcon(Reference.Naming.ID + ":" + Reference.Naming.SCHEMATIC_DEFAULT);
+    }
+
+    public final void setSchematic(BlockWithMetaStorage[][][] schematicArray)
+    {
+        this.schematicArray = iterateAndFill(schematicArray);
     }
 }
