@@ -12,20 +12,20 @@ public class ProjectorModel extends ModelBase
 {
     // fields
     ModelRenderer base;
-    ModelRenderer projectorstand;
     ModelRenderer body;
-    ModelRenderer lecternstand;
-    ModelRenderer panelright;
+    ModelRenderer keypad;
+    ModelRenderer keypadstand;
     ModelRenderer lectern;
-    ModelRenderer panelrod;
-    ModelRenderer panelleft;
+    ModelRenderer lecternlip;
+    ModelRenderer lecternstand;
     ModelRenderer lens1;
     ModelRenderer lens2;
     ModelRenderer lens3;
     ModelRenderer lens4;
-    ModelRenderer keypad;
-    ModelRenderer keypadstand;
-    ModelRenderer lecternlip;
+    ModelRenderer panelleft;
+    ModelRenderer panelright;
+    ModelRenderer panelrod;
+    ModelRenderer projectorstand;
 
     public ProjectorModel()
     {
