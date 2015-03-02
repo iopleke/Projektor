@@ -19,6 +19,19 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
         super();
     }
 
+    @Override
+    public void closeInventory()
+    {
+    }
+
+    @Override
+    public ItemStack decrStackSize(int slot, int amount)
+    {
+        ItemStack stack = getStackInSlot(slot);
+        setInventorySlotContents(slot, null);
+        return stack;
+    }
+
     public int getFacing()
     {
         if (this.getHasWorldObj())
@@ -29,14 +42,26 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
         return 0;
     }
 
+    public boolean getHasBlueprint()
+    {
+        return schematic != null;
+    }
+
     public boolean getHasWorldObj()
     {
         return worldObj != null;
     }
 
-    public boolean getHasBlueprint()
+    @Override
+    public String getInventoryName()
     {
-        return schematic != null;
+        return "Projector";
+    }
+
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 1;
     }
 
     public ItemStack getSchematic()
@@ -57,14 +82,6 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
     }
 
     @Override
-    public ItemStack decrStackSize(int slot, int amount)
-    {
-        ItemStack stack = getStackInSlot(slot);
-        setInventorySlotContents(slot, null);
-        return stack;
-    }
-
-    @Override
     public ItemStack getStackInSlotOnClosing(int slot)
     {
         ItemStack stack = this.getStackInSlot(slot);
@@ -76,53 +93,9 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
     }
 
     @Override
-    public void setInventorySlotContents(int slot, ItemStack stack)
-    {
-        if (stack != null)
-        {
-            Item item = stack.getItem();
-            if (item != null && item instanceof BasicSchematic)
-            {
-                schematic = stack;
-                return;
-            }
-        }
-        schematic = null;
-
-    }
-
-    @Override
-    public String getInventoryName()
-    {
-        return "Projector";
-    }
-
-    @Override
     public boolean hasCustomInventoryName()
     {
         return false;
-    }
-
-    @Override
-    public int getInventoryStackLimit()
-    {
-        return 1;
-    }
-
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer entityplayer)
-    {
-        return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this && entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
-    }
-
-    @Override
-    public void closeInventory()
-    {
-    }
-
-    @Override
-    public void openInventory()
-    {
     }
 
     @Override
@@ -139,6 +112,17 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
     }
 
     @Override
+    public boolean isUseableByPlayer(EntityPlayer entityplayer)
+    {
+        return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this && entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
+    }
+
+    @Override
+    public void openInventory()
+    {
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound nbttagcompound)
     {
         super.readFromNBT(nbttagcompound);
@@ -146,6 +130,22 @@ public class ProjectorTileEntity extends TileEntity implements IInventory
 
         NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(0);
         schematic = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+
+    }
+
+    @Override
+    public void setInventorySlotContents(int slot, ItemStack stack)
+    {
+        if (stack != null)
+        {
+            Item item = stack.getItem();
+            if (item != null && item instanceof BasicSchematic)
+            {
+                schematic = stack;
+                return;
+            }
+        }
+        schematic = null;
 
     }
 
