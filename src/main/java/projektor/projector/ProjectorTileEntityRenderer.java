@@ -22,34 +22,6 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
         this.model = new ProjectorModel();
     }
 
-    @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float scale)
-    {
-        if (tileEntity instanceof ProjectorTileEntity)
-        {
-            ProjectorTileEntity blueprintProjector = (ProjectorTileEntity) tileEntity;
-            int facing = blueprintProjector.getFacing();
-            GL11.glPushMatrix();
-            GL11.glTranslated(x + 0.5D, y + 1.5D, z + 0.5D);
-            GL11.glRotatef(180f, 0f, 0f, 1f);
-            GL11.glRotatef((facing * 90.0F), 0.0F, 1.0F, 0.0F);
-            if (blueprintProjector.getHasBlueprint())
-            {
-                bindTexture(Reference.Model.PROJECTOR_ON);
-            } else
-            {
-                bindTexture(Reference.Model.PROJECTOR_OFF);
-            }
-            model.render(0.0625F);
-            GL11.glPopMatrix();
-
-            if (blueprintProjector.getHasWorldObj() && blueprintProjector.getHasBlueprint())
-            {
-                this.renderGhostBlockAt(blueprintProjector, x, y, z);
-            }
-        }
-    }
-
     public void renderGhostBlockAt(ProjectorTileEntity blueprintProjector, double x, double y, double z)
     {
         /*
@@ -128,6 +100,34 @@ public class ProjectorTileEntityRenderer extends TileEntitySpecialRenderer
          * Restore normal lighting
          */
         RenderHelper.enableStandardItemLighting();
+    }
+
+    @Override
+    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float scale)
+    {
+        if (tileEntity instanceof ProjectorTileEntity)
+        {
+            ProjectorTileEntity blueprintProjector = (ProjectorTileEntity) tileEntity;
+            int facing = blueprintProjector.getFacing();
+            GL11.glPushMatrix();
+            GL11.glTranslated(x + 0.5D, y + 1.5D, z + 0.5D);
+            GL11.glRotatef(180f, 0f, 0f, 1f);
+            GL11.glRotatef((facing * 90.0F), 0.0F, 1.0F, 0.0F);
+            if (blueprintProjector.getHasBlueprint())
+            {
+                bindTexture(Reference.Model.PROJECTOR_ON);
+            } else
+            {
+                bindTexture(Reference.Model.PROJECTOR_OFF);
+            }
+            model.render(0.0625F);
+            GL11.glPopMatrix();
+
+            if (blueprintProjector.getHasWorldObj() && blueprintProjector.getHasBlueprint())
+            {
+                this.renderGhostBlockAt(blueprintProjector, x, y, z);
+            }
+        }
     }
 
 }
